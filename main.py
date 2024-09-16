@@ -7,6 +7,8 @@ import argparse
 import time
 from colorama import Fore, Style, init
 
+# TODO: general explanation of the script
+
 # Initialize colorama
 init()
 
