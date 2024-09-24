@@ -15,6 +15,16 @@ init()
 
 # Global dictionaries to store flow statistics and DNS resolutions
 flow_statistics = defaultdict(lambda: {"packets": 0, "bytes": 0, "protocol": None})
+outbound_inernal_ip_usage = defaultdict(lambda: {"packets": 0, "bytes" : 0})
+avg_usage = defaultdict(lambda: {"packets": 0, "bytes" : 0})
+avg_usage["192.168.1.75"] = {"packets": 1000, "bytes" : 1000} # previous usage of internal IPs known from previous data for example
+# set the average usage of internal IPs based on ptrvious information
+# set the threshold for the average usage
+AVG_THRESHOLD = 100000
+AVG_PACKETS_THRESHOLD = 100
+# set the threshold for the average usage of internal IPs
+
+
 AUTHORIZED_IPS = set()  # Store DNS responses to detect outbound flows without a prior DNS response (not just that)
 AUTHORIZED_IPS.add("8.8.8.8")  # Google DNS for example
 
@@ -44,14 +54,51 @@ MAX_CONNECTIONS_PER_HOUR = 500
 hourly_connections = defaultdict(int)
 
 
+def is_valid_http_header(headers):
+    required_headers = ['Host', 'User-Agent']
+    valid_methods = ['GET', 'POST', 'PUT', 'DELETE', 'HEAD', 'OPTIONS', 'PATCH']
+    
+    if not isinstance(headers, dict):
+        return False
+    
+    # Check for required headers
+    for header in required_headers:
+        if header not in headers:
+            return False
+    
+    # Check for valid HTTP method
+    if 'Method' in headers:
+        if headers['Method'] not in valid_methods:
+            return False
+    else:
+        return False
+    
+    # Check for valid HTTP version
+    if 'HTTP-Version' in headers:
+        if not headers['HTTP-Version'].startswith('HTTP/'):
+            return False
+    else:
+        return False
+    
+    # Additional checks for common headers
+    if 'Content-Length' in headers:
+        try:
+            int(headers['Content-Length'])
+        except ValueError:
+            return False
+    
+    if 'Content-Type' in headers:
+        if not headers['Content-Type'].strip():
+            return False
+    
+    return True
+
+
 
 def check_header(packet, port, protocol_name):
     if protocol_name == 'HTTP' and (port == 80 or port == 443):
         if packet.haslayer(TCP) and packet[TCP].dport in {80, 443}:
-            tcp_header_length = packet[TCP].dataofs * 4
-            if len(packet[TCP].payload) + tcp_header_length != len(packet):
-                return False
-            return True
+            return is_valid_http_header(packet[Raw].load)
     elif protocol_name == 'HTTPS' and port == 443:
         if packet.haslayer(TCP) and packet[TCP].dport == 443:
             tcp_header_length = packet[TCP].dataofs * 4
@@ -120,7 +167,11 @@ def packet_callback(packet):
                 protocol_name = 'DNS'
 
         flow_id = (ip_src, port_src, ip_dst, port_dst, protocol_name)
-
+        
+        if ip_src.startswith(INTERNAL_IP_RANGE):
+            outbound_inernal_ip_usage[ip_src]["packets"] += 1
+            outbound_inernal_ip_usage[ip_src]["bytes"] += len(packet)
+           
         stats = flow_statistics[flow_id]
         stats["packets"] += 1
         stats["bytes"] += len(packet)
@@ -154,8 +205,10 @@ def packet_callback(packet):
             if ip_dst in UNAUTHORIZED_IPS:
                 alerts.append(f"{Fore.RED}ALERT: Outbound flow to unauthorized IP {ip_dst} - Flow: {flow_id}{Style.RESET_ALL}")
 
-            if port_src not in AUTHORIZED_OUTBOUND_PORTS:
-                alerts.append(f"{Fore.RED}ALERT: Outbound flow to unauthorized port {port_src} - Flow: {flow_id}{Style.RESET_ALL}")
+            #if port_src not in AUTHORIZED_OUTBOUND_PORTS: not good, we need to check the destination port
+             #   alerts.append(f"{Fore.RED}ALERT: Outbound flow from unauthorized port {port_src} - Flow: {flow_id}{Style.RESET_ALL}")
+            if port_dst not in AUTHORIZED_OUTBOUND_PORTS:
+                alerts.append(f"{Fore.RED}ALERT: Outbound flow to unauthorized port {port_dst} - Flow: {flow_id}{Style.RESET_ALL}")
 
             if protocol not in AUTHORIZED_PROTOCOLS:
                 alerts.append(f"{Fore.RED}ALERT: Outbound flow using unauthorized protocol {protocol_name} - Flow: {flow_id}{Style.RESET_ALL}")
@@ -188,6 +241,9 @@ def packet_callback(packet):
             if stats["bytes"] > VOLUME_THRESHOLD:
                 alerts.append(f"{Fore.RED}ALERT: High volume detected in outbound flow {flow_id} - Byte Count: {stats['bytes']}{Style.RESET_ALL}")
 
+            if outbound_inernal_ip_usage[ip_src]["packets"] > AVG_PACKETS_THRESHOLD and outbound_inernal_ip_usage[ip_src]["bytes"] > AVG_THRESHOLD:
+                alerts.append(f"{Fore.RED}ALERT: High usage detected in internal IP {ip_src} - Byte Count: {outbound_inernal_ip_usage[ip_src]['bytes']}{Style.RESET_ALL}") 
+
 
 
 
@@ -198,6 +254,7 @@ def packet_callback(packet):
 
             if port_dst not in AUTHORIZED_INBOUND_PORTS:
                 alerts.append(f"{Fore.YELLOW}ALERT: Inbound flow to unauthorized port {port_dst} - Flow: {flow_id}{Style.RESET_ALL}")
+            
 
 def start_sniffing(interface):
     sniff(iface=interface, prn=packet_callback, store=0, stop_filter=lambda x: stop_event.is_set())

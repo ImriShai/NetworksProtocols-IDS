@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.9.24)  24 SEP 2024 13:34
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.9.24)  24 SEP 2024 15:24
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -310,26 +310,26 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 16.
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
-{C:/Users/hagay/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}] [2] (R&D.aux)
+{C:/Users/hagay/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}] [2] [3] (R&D.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-04>
  ***********
 Package rerunfilecheck Info: File `R&D.out' has not changed.
-(rerunfilecheck)             Checksum: 2A9539449EDB0395659A6BF4B30A5A86;1088.
+(rerunfilecheck)             Checksum: 725CAF08613880E7E416BA963A2D6D52;2110.
  ) 
 Here is how much of TeX's memory you used:
- 11031 strings out of 474486
- 168626 string characters out of 5743755
- 1933542 words of memory out of 5000000
- 33178 multiletter control sequences out of 15000+600000
+ 11044 strings out of 474486
+ 168802 string characters out of 5743755
+ 1935542 words of memory out of 5000000
+ 33184 multiletter control sequences out of 15000+600000
  564878 words of font info for 61 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,6n,79p,298b,441s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,6n,79p,417b,442s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/hagay/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/hagay/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx9.pfb><C:/Users/hagay/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/hagay/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/hagay/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/hagay/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Users/hagay/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on R&D.pdf (2 pages, 100954 bytes).
+Output written on R&D.pdf (3 pages, 112510 bytes).
 PDF statistics:
- 89 PDF objects out of 1000 (max. 8388607)
- 14 named destinations out of 1000 (max. 500000)
- 65 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 118 PDF objects out of 1000 (max. 8388607)
+ 21 named destinations out of 1000 (max. 500000)
+ 113 words of extra memory for PDF output out of 10000 (max. 10000000)
 

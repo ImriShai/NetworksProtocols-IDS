@@ -7,7 +7,7 @@
 \usepackage{color}
 
 \title{Research and Development on Data Leak Attacks}
-\author{Your Names}
+\author{Your Name}
 \date{\today}
 
 \begin{document}
@@ -19,21 +19,42 @@ This document provides an overview of research and development activities relate
 \end{abstract}
 
 \section{Introduction}
-Data leak attacks are a significant threat to information security. This section introduces the concept of data leaks and their impact on organizations.
-
-\section{Types of Data Leaks}
-\subsection{Accidental Data Leaks}
-Accidental data leaks occur due to human error or misconfiguration. Examples include sending sensitive information to the wrong recipient or misconfiguring access controls.
-
-\subsection{Malicious Data Leaks}
-Malicious data leaks are intentional acts by insiders or external attackers. These can include data theft, espionage, or sabotage.
+Data leak attacks are a significant threat to organizations, as they can result in the exposure of sensitive information and financial loss. Research and development activities in this area focus on understanding the types of data leaks, identifying methods of attack, and developing mitigation strategies to protect against these threats.
 
 \section{Methods of Attack}
-\subsection{Phishing}
-Phishing attacks trick individuals into revealing sensitive information by posing as a trustworthy entity.
 
-\subsection{Monitoring and Detection}
-Continuous monitoring and detection systems can help identify and respond to data leaks promptly.
+\subsection{Tunneling}
+One common method of data leak attack is tunneling, where an attacker establishes a covert channel to exfiltrate data from a secure network. This can be done through various protocols, such as DNS, ICMP, or HTTP, to bypass firewalls and other security measures.
+
+\subsection{Social Engineering}
+Social engineering attacks involve manipulating individuals to divulge sensitive information or perform actions that compromise security. Attackers may use phishing emails, phone calls, or other methods to trick employees into revealing passwords or other confidential data.
+
+\subsection{Backdoors and Ports Misuses}
+Attackers may exploit backdoors or misuse open ports to gain unauthorized access to a network and exfiltrate data. This can involve exploiting vulnerabilities in software or hardware, or using default credentials to gain access to systems.
+
+\section{Data Leak Detection}
+
+\subsection{Packet Inspection}
+Packet inspection tools can analyze network traffic to identify suspicious patterns or anomalies that may indicate a data leak. By monitoring packet headers and payloads, these tools can detect unauthorized data transfers and alert security teams to potential threats.
+
+\subsection{User Behavior Analytics (UBA)}
+UBA tools analyze user behavior to detect abnormal activities that may indicate a data leak. By monitoring user logins, file access, and other activities, these tools can identify unauthorized access and data exfiltration attempts.
+
+\subsection{Packet Header Analysis}
+Packet header analysis tools can examine network traffic to identify data leaks based on packet headers. By analyzing source and destination IP addresses, port numbers, and other header fields, these tools can detect suspicious traffic patterns that may indicate a data leak.
+
+\section{Data Leak Attacks Examples}
+
+\subsection{DNS Tunneling}
+DNS tunneling attacks involve using DNS queries and responses to exfiltrate data from a secure network. Attackers can encode data in DNS queries or responses and use a malicious DNS server to extract the information.
+
+\subsection{SQL Injection}
+SQL injection attacks involve injecting malicious SQL code into a web application to extract data from a database. Attackers can exploit vulnerabilities in input fields to execute SQL queries and retrieve sensitive information.
+
+\subsection{After Hours Data Exfiltration}
+After hours data exfiltration attacks involve exfiltrating data from a network when security teams are not actively monitoring traffic. Attackers may schedule data transfers during off-peak hours to avoid detection and increase the chances of success.
+
+
 
 \section{Conclusion}
 Data leak attacks pose a serious risk to organizations. By understanding the types of data leaks, methods of attack, and mitigation strategies, organizations can better protect themselves against these threats.

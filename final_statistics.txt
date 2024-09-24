@@ -1,0 +1,26 @@
+Flow: ('192.168.1.75', 20, '10.24.53.63', 80, 'HTTP') - Packet Count: 10 - Byte Count: 600400 - Protocol: HTTP
+
+Alerts:
+[31mALERT: Packet header does not match expected protocol for flow ('192.168.1.75', 20, '10.24.53.63', 80, 'HTTP')[0m
+[31mALERT: Outbound flow to 10.24.53.63 without prior DNS response - Flow: ('192.168.1.75', 20, '10.24.53.63', 80, 'HTTP')[0m
+[31mALERT: Packet header does not match expected protocol for flow ('192.168.1.75', 20, '10.24.53.63', 80, 'HTTP')[0m
+[31mALERT: Outbound flow to 10.24.53.63 without prior DNS response - Flow: ('192.168.1.75', 20, '10.24.53.63', 80, 'HTTP')[0m
+[31mALERT: Packet header does not match expected protocol for flow ('192.168.1.75', 20, '10.24.53.63', 80, 'HTTP')[0m
+[31mALERT: Outbound flow to 10.24.53.63 without prior DNS response - Flow: ('192.168.1.75', 20, '10.24.53.63', 80, 'HTTP')[0m
+[31mALERT: Packet header does not match expected protocol for flow ('192.168.1.75', 20, '10.24.53.63', 80, 'HTTP')[0m
+[31mALERT: Outbound flow to 10.24.53.63 without prior DNS response - Flow: ('192.168.1.75', 20, '10.24.53.63', 80, 'HTTP')[0m
+[31mALERT: Packet header does not match expected protocol for flow ('192.168.1.75', 20, '10.24.53.63', 80, 'HTTP')[0m
+[31mALERT: Outbound flow to 10.24.53.63 without prior DNS response - Flow: ('192.168.1.75', 20, '10.24.53.63', 80, 'HTTP')[0m
+[31mALERT: Packet header does not match expected protocol for flow ('192.168.1.75', 20, '10.24.53.63', 80, 'HTTP')[0m
+[31mALERT: Outbound flow to 10.24.53.63 without prior DNS response - Flow: ('192.168.1.75', 20, '10.24.53.63', 80, 'HTTP')[0m
+[31mALERT: Packet header does not match expected protocol for flow ('192.168.1.75', 20, '10.24.53.63', 80, 'HTTP')[0m
+[31mALERT: Outbound flow to 10.24.53.63 without prior DNS response - Flow: ('192.168.1.75', 20, '10.24.53.63', 80, 'HTTP')[0m
+[31mALERT: Packet header does not match expected protocol for flow ('192.168.1.75', 20, '10.24.53.63', 80, 'HTTP')[0m
+[31mALERT: Outbound flow to 10.24.53.63 without prior DNS response - Flow: ('192.168.1.75', 20, '10.24.53.63', 80, 'HTTP')[0m
+[31mALERT: Packet header does not match expected protocol for flow ('192.168.1.75', 20, '10.24.53.63', 80, 'HTTP')[0m
+[31mALERT: Outbound flow to 10.24.53.63 without prior DNS response - Flow: ('192.168.1.75', 20, '10.24.53.63', 80, 'HTTP')[0m
+[31mALERT: High volume detected in outbound flow ('192.168.1.75', 20, '10.24.53.63', 80, 'HTTP') - Byte Count: 540360[0m
+ALERT: Possible scanning activity detected from 192.168.1.75
+[31mALERT: Packet header does not match expected protocol for flow ('192.168.1.75', 20, '10.24.53.63', 80, 'HTTP')[0m
+[31mALERT: Outbound flow to 10.24.53.63 without prior DNS response - Flow: ('192.168.1.75', 20, '10.24.53.63', 80, 'HTTP')[0m
+[31mALERT: High volume detected in outbound flow ('192.168.1.75', 20, '10.24.53.63', 80, 'HTTP') - Byte Count: 600400[0m
