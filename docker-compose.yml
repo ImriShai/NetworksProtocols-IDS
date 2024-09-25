@@ -1,0 +1,136 @@
+version: '3.8'
+
+services:
+  
+  internal_server:
+    image: nginx:latest
+    container_name: internal_server
+    networks:
+      internal_network:
+        ipv4_address: 172.21.0.2
+    ports:
+      - "8080:80"
+    volumes:
+      - ./internal_server:/usr/share/nginx/html:ro
+    restart: always
+    entrypoint: ["/bin/sh", "-c", "apt update && apt install -y iproute2 && ip route del default || true && ip route add default via 172.21.0.9 && nginx -g 'daemon off;'"]  # Set the default gateway to IDS and start nginx    cap_add:
+    cap_add:
+      - NET_ADMIN # Required for network rerouting
+
+  database:
+    image: mysql:8.0-debian
+    container_name: internal_db
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: company_data
+      MYSQL_USER: user
+      MYSQL_PASSWORD: user_password
+    networks:
+      internal_network:
+        ipv4_address: 172.21.0.3
+    volumes:
+      - db_data:/var/lib/mysql
+    entrypoint: ["/bin/sh", "-c", "apt update && apt install -y iproute2 && ip route del default || true && ip route add default via 172.21.0.9 && docker-entrypoint.sh mysqld"]  # Set the default gateway to IDS and start MySQL
+    restart: always
+   
+    cap_add:
+      - NET_ADMIN # Required for network rerouting
+  user:
+    image: alpine:latest
+    container_name: internal_user
+    networks:
+      internal_network:
+        ipv4_address: 172.21.0.4
+    volumes:
+      - ./volumes:/volumes  # User code directory
+    
+    entrypoint: ["/bin/sh", "-c", "ip route del default || true && ip route add default via 172.21.0.9 && while true; do sleep 30; done"]  # Set the default gateway and keep the container running
+    cap_add:
+      - NET_ADMIN # Required for network rerouting
+    # restart: always
+  user1:
+    image: alpine:latest
+    container_name: internal_user1
+    networks:
+      internal_network:
+        ipv4_address: 172.21.0.5
+    volumes:
+      - ./volumes:/volumes  # User code directory
+       
+    command: ["/bin/sh", "-c", "apk update && apk add curl && while true; do sleep 30; done"]  # Keep the container running
+    entrypoint: ["/bin/sh", "-c", "ip route del default || true && ip route add default via 172.21.0.9 && while true; do sleep 30; done"]  # Set the default gateway and keep the container running
+    cap_add:
+      - NET_ADMIN # Required for network rerouting
+  user2:
+    image: alpine:latest
+    container_name: internal_user2
+    networks:
+      internal_network:
+        ipv4_address: 172.21.0.6
+    volumes:
+       - ./volumes:/volumes  # User code directory
+       # run the user1 script
+    command: ["/bin/sh", "-c", "apk update && apk add bind-tools && while true; do sleep 30; done"]  # Keep the container running
+    entrypoint: ["/bin/sh", "-c", "ip route del default || true && ip route add default via 172.21.0.9 && while true; do sleep 30; done"]  # Set the default gateway and keep the container running
+    cap_add:
+      - NET_ADMIN # Required for network rerouting
+  user3:
+    image: alpine:latest
+    container_name: internal_user3
+    networks:
+      internal_network:
+        ipv4_address: 172.21.0.7
+    volumes:
+      - ./volumes:/volumes  # User code directory
+       # run the user1 script
+    entrypoint: ["/bin/sh", "-c", "ip route del default || true && ip route add default via 172.21.0.9 && while true; do sleep 30; done"]  # Set the default gateway and keep the container running
+    cap_add:
+      - NET_ADMIN # Required for network rerouting
+  
+  external_server:
+    image: python:3.9-slim
+    container_name: external_server
+    networks:
+      external_network:
+        ipv4_address: 172.22.0.8
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./external_server:/app
+    entrypoint: ["python", "-m", "http.server", "9090"]
+    
+
+  ids:
+    image: python:3.9-slim
+    container_name: ids
+    networks:
+      internal_network:
+        ipv4_address: 172.21.0.9
+      external_network:
+        ipv4_address: 172.22.0.9
+    volumes:
+      - ./volumes:/volumes  # User code directory
+    # command: ["bin/sh", "-c", "apt update && apt install -y iptables && pip install scapy colorama pandas matplotlib seaborn &&  while true; do sleep 30; done"]  # Keep the container running and install the required packages
+     # Run a custom entrypoint to configure iptables and enable routing
+    entrypoint: ["/bin/sh", "-c", "apt update && apt install -y iptables && pip install scapy colorama pandas matplotlib seaborn && echo 1 > /proc/sys/net/ipv4/ip_forward && iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE && iptables -A FORWARD -i eth0 -o eth0 -j ACCEPT && while true; do sleep 30; done"]
+    cap_add:
+      - NET_ADMIN # Required for network monitoring
+    privileged: true  # Required for network monitoring
+    init: true  # Required for network monitoring and thread management
+
+volumes:
+  db_data: {}
+  
+
+
+networks:
+  internal_network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.21.0.0/16
+  external_network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.22.0.0/16
