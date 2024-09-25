@@ -34,6 +34,26 @@ def create_dns_tunnel_traffic(num_packets, secret_message, domain):
         packets.append(packet)
     # Save the packets to a PCAP file
     wrpcap("dns_tunnel_exfiltration.pcap", packets)
+    
+def create_icmp_tunnel_packet(secret_data):
+    # Encode the information in Base32 to simulate tunneling communication
+    encoded_data = base64.b32encode(secret_data.encode()).decode()
+    
+    # Create the ICMP packet
+    icmp_packet = IP(dst="8.8.8.8")/ICMP()/(encoded_data)
+    return icmp_packet
+
+def create_icmp_tunnel_traffic(num_packets, secret_message):
+    print("PCAP file created with ICMP tunneling traffic.")
+    packets = []
+    for i in range(num_packets):
+        # Create a sample "data chunk" for each packet
+        data_chunk = secret_message + str(i)
+        packet = create_icmp_tunnel_packet(data_chunk)
+        packets.append(packet)
+    # Save the packets to a PCAP file
+    wrpcap("icmp_tunnel_exfiltration.pcap", packets)
+                     
 
 def create_unauthorized_port_access_packet(port):
     # Create a packet with an unauthorized port access
@@ -143,32 +163,35 @@ def create_unusual_user_activity_traffic(num_packets):
 
 if __name__ == '__main__':
     
-    type = input("Enter the type of alerts you want to test: \n 1. DNS Tunneling \n 2. Ports Exploiting(e.g using unautherized ports) \n 3. After buisness hours \n 4. Large data transfer \n 5. Suspicious Traffic \n 6. Unauthorized File Transfer \n 7. Unusual Traffic \n 8. Unusual User Activity \n 11. All of the above \n") 
+    type = input("Enter the type of alerts you want to test: \n 1. DNS Tunneling \n 2. ICMP tunneling \n 3. Ports Exploiting(e.g using unautherized ports) \n 4. After buisness hours \n 5. Large data transfer \n 6. Suspicious Traffic \n 7. Unauthorized File Transfer \n 8. Unusual Traffic \n 9. Unusual User Activity \n 11. All of the above \n") 
     type = int(type)
     if type == 1:
         print("DNS Tunneling")
         # Create a PCAP file with DNS tunneling traffic
         create_dns_tunnel_traffic(10, "This sensitive data is being exfiltrated", "example.com")
     elif type == 2:
+        print("ICMP Tunneling")
+        create_icmp_tunnel_traffic(10, "This sensitive data is being exfiltrated using ICMP")
+    elif type == 3:
         print("Ports Exploiting") # Create a PCAP file with unauthorized port access
         create_unauthorized_port_access_traffic(10, 9999)
-    elif type == 3:
+    elif type == 4:
         print("After buisness hours")
         create_after_buisness_hours_traffic(10)
-    elif type == 4:
+    elif type == 5:
         print("Large data transfer")
         create_large_data_transfer_traffic(10)
 
-    elif type == 5:
+    elif type == 6:
         print("Suspicious Traffic")
         create_suspicious_traffic_traffic(10)
-    elif type == 6:
+    elif type == 7:
         print("Unauthorized File Transfer")
         create_unauthorized_file_transfer_traffic(10)
-    elif type == 7:
+    elif type == 8:
         print("Unusual Traffic")
         create_unusual_traffic_traffic(100)
-    elif type == 8:
+    elif type == 9:
         print("Unusual User Activity")
         create_unusual_user_activity_traffic(1000)
         
