@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1727340489.61217 "c:/Users/hagay/.vscode/NetworksProtocols-IDS/Reports/IDS.tex" "IDS.pdf" "IDS" 1727340490.29841 0
+["pdflatex"] 1727341498.40089 "c:/Users/hagay/.vscode/NetworksProtocols-IDS/Reports/IDS.tex" "IDS.pdf" "IDS" 1727341499.37784 0
   "C:/Users/hagay/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1727173722 80909 eab91d9745dd2edfd62a31d53cd5fe15 ""
   "C:/Users/hagay/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/tcrm1000.pk" 1727340256 11548 ab19c10659ca87e209abe7c704263254 ""
   "C:/Users/hagay/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1727173665 24225046 002efb060574a8af8b5f6c59b1b6f9aa ""
@@ -33,9 +33,13 @@
   "C:/Users/hagay/AppData/Local/Programs/MiKTeX/tex/latex/graphics/keyval.sty" 1665067579 2671 7e67d78d9b88c845599a85b2d41f2e39 ""
   "C:/Users/hagay/AppData/Local/Programs/MiKTeX/tex/latex/graphics/trig.sty" 1665067579 4023 293ea1c16429fc0c4cf605f4da1791a9 ""
   "C:/Users/hagay/AppData/Local/Programs/MiKTeX/tex/latex/l3backend/l3backend-pdftex.def" 1704404541 30006 57b07afb710ee2f649c65cfbafda39c1 ""
-  "IDS.aux" 1727340490 1784 9e52caa3d7af51604592171f3de5c949 "pdflatex"
-  "IDS.tex" 1727340488 4111 57f5eaa7585fc2ccb2a3bc0c672f93a1 ""
-  "c:/Users/hagay/.vscode/NetworksProtocols-IDS/Reports/IDS.tex" 1727340488 4111 57f5eaa7585fc2ccb2a3bc0c672f93a1 ""
+  "IDS.aux" 1727341499 1784 56b05647b8b2d23eacfd2caf8cfe1f89 "pdflatex"
+  "IDS.tex" 1727341498 4374 15812778d79e8b70c6e82038d8a7c09d ""
+  "Screenshots/Alerts_per_IP_Address.png" 1727341054 24867 57f7a1d5837319132b5cf9b9349760e8 ""
+  "Screenshots/Alerts_per_Protocol.png" 1727341051 24599 847a0bb8f4062e26a4c7ff1f1d7747f8 ""
+  "Screenshots/Flows_per_Protocol.png" 1727341039 24976 80083fdd2736550b9e9dc132b529b698 ""
+  "Screenshots/Top_10_IPs_by_Flow_Count.png" 1727341044 24718 30724a858090b6406107b9845846d5b0 ""
+  "c:/Users/hagay/.vscode/NetworksProtocols-IDS/Reports/IDS.tex" 1727341498 4374 15812778d79e8b70c6e82038d8a7c09d ""
   (generated)
   "IDS.aux"
   "IDS.log"
