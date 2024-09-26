@@ -29,7 +29,7 @@ class DataDashboardGUI:
         plt.figure(figsize=(10, 6))
         plt.pie(counts, labels=protocols, autopct='%1.1f%%', startangle=140)
         plt.title('Flows per Protocol')
-        plt.savefig('stats_img/Flows_per_Protocol.png')
+        plt.savefig('../stats_img/Flows_per_Protocol.png')
         plt.show()
 
 
@@ -44,7 +44,7 @@ class DataDashboardGUI:
         plt.title('Top 10 IPs by Flow Count')
         plt.xlabel('Count')
         plt.ylabel('IP Address')
-        plt.savefig('stats_img/Top_10_IPs_by_Flow_Count.png')
+        plt.savefig('../stats_img/Top_10_IPs_by_Flow_Count.png')
         plt.show()
 
     def plot_flow_bytes_distribution(self):
@@ -55,7 +55,7 @@ class DataDashboardGUI:
         plt.title('Flow Byte Count Distribution')
         plt.xlabel('Byte Count')
         plt.ylabel('Frequency')
-        plt.savefig('stats_img/Flow_Byte_Count_Distribution.png')
+        plt.savefig('../stats_img/Flow_Byte_Count_Distribution.png')
         plt.show()
 
     def plot_flow_packets_distribution(self):
@@ -66,7 +66,7 @@ class DataDashboardGUI:
         plt.title('Flow Packet Count Distribution')
         plt.xlabel('Packet Count')
         plt.ylabel('Frequency')
-        plt.savefig('stats_img/Flow_Packet_Count_Distribution.png')
+        plt.savefig('../stats_img/Flow_Packet_Count_Distribution.png')
         plt.show()
 
     def plot_alerts_per_protocol(self):
@@ -80,7 +80,7 @@ class DataDashboardGUI:
         plt.figure(figsize=(10, 6))
         plt.pie(counts, labels=protocols, autopct='%1.1f%%', startangle=140)
         plt.title('Alerts per Protocol')
-        plt.savefig('stats_img/Alerts_per_Protocol.png')
+        plt.savefig('../stats_img/Alerts_per_Protocol.png')
         plt.show()
 
     def plot_alerts_per_ip(self):
@@ -96,7 +96,7 @@ class DataDashboardGUI:
         plt.title('Alerts per IP Address')
         plt.xlabel('Count')
         plt.ylabel('IP Address')
-        plt.savefig('stats_img/Alerts_per_IP_Address.png')
+        plt.savefig('../stats_img/Alerts_per_IP_Address.png')
         plt.show()
 
     def plot_avrges(self): #plot the average usage of internal IPs
@@ -110,7 +110,7 @@ class DataDashboardGUI:
         plt.title('Average usage of internal IPs')
         plt.xlabel('Count')
         plt.ylabel('IP Address')
-        plt.savefig('stats_img/Average_usage_of_internal_IPs.png')
+        plt.savefig('../stats_img/Average_usage_of_internal_IPs.png')
         plt.show()
 
 
@@ -442,8 +442,10 @@ def packet_callback(packet):
                 add_alert(f"{Fore.RED}ALERT: Unauthorized FTP outbound flow detected to {ip_dst} - Flow: {flow_id}{Style.RESET_ALL}", flow_id)
             
             # Check for ICMP tunneling
-            if protocol_name == 'ICMP' and stats["bytes"] > 256*15: # 15 packets of 256 bytes the average size of an ICMP packet
-                add_alert(f"{Fore.RED}ALERT: Possible ICMP tunneling detected to {ip_dst} - Flow: {flow_id}{Style.RESET_ALL}", flow_id)
+            if protocol_name == 'ICMP' and stats["bytes"] > 1000: # 1KB threshold
+                add_alert(f"{Fore.RED}ALERT: Possible ICMP tunneling detected to {ip_dst}, size above threshold for - Flow: {flow_id}{Style.RESET_ALL}", flow_id)
+            if protocol_name == 'ICMP' and stats["packets"] > 10: # 10 packets threshold
+                add_alert(f"{Fore.RED}ALERT: Possible ICMP tunneling detected to {ip_dst} number of packets above threshold for - Flow: {flow_id}{Style.RESET_ALL}", flow_id)
                 
             
                 
@@ -505,13 +507,13 @@ def save_statistics_to_file(alertsFile,csvStatsFile, stats_lines, alert_lines):
             file.write(line + '\n')
 
 def save_and_exit(flow_statistics, alerts, stats_per_flow, alerts_file):
-    os.makedirs('stats', exist_ok=True)
+    os.makedirs('../stats', exist_ok=True)
     print("Saving statistics and alerts...")
     stats_lines = generate_statistics(flow_statistics)
     save_statistics_to_file(alerts_file,stats_per_flow, stats_lines, alerts)
     print(f"Final statistics per flow saved to {stats_per_flow} \nExiting...")
     print(f"Alerts saved to {alerts_file} \nExiting...")
-    os.makedirs('stats_img', exist_ok=True)
+    os.makedirs('../stats_img', exist_ok=True)
     dashboard = DataDashboardGUI(stats_lines, alerts)
     dashboard.plot_flows_per_protocol()
     dashboard.plot_flow_ips_statistics()
@@ -531,8 +533,8 @@ def save_and_exit(flow_statistics, alerts, stats_per_flow, alerts_file):
 def main():
     parser = argparse.ArgumentParser(description="Network Traffic Monitor")
     parser.add_argument('--internal-ip-prefix', required=True, help="The prefix of the internal IP range") 
-    parser.add_argument('--Flow-stats-file', default="flow_statistics.csv", help="The file to save statistics per flow")
-    parser.add_argument('--alerts-file', default="alerts.txt", help="The file to save alerts")
+    parser.add_argument('--Flow-stats-file', default="../stats/flow_statistics.csv", help="The file to save statistics per flow")
+    parser.add_argument('--alerts-file', default="../stats/alerts.txt", help="The file to save alerts")
     parser.add_argument('--interface', required= False, help="The network interface to sniff on") #For live capture
     parser.add_argument('--pcap-file', required=False, help="The pcap file to analyze") #For pcap file
     

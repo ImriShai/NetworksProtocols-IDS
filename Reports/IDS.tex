@@ -2,7 +2,7 @@
 \usepackage{graphicx}
 
 \title{Intrusion Detection System (IDS) Report}
-\author{Your Name}
+\author{Hagay Cohen, Imri Shai}
 \date{\today}
 
 \begin{document}
@@ -10,11 +10,13 @@
 \maketitle
 
 \section{Conclusions from the R\&D}
-The research and development phase of our IDS project has yielded several key insights. These include...
+The research we conducted on data leak attacks provided valuable insights into the types of attacks, methods of exfiltration, and detection mechanisms. We found that data leak attacks can be detected through packet inspection, user behavior analytics, and packet header analysis. These detection methods are implemented in our Intrusion Detection System (IDS) as discribed below.
 
-\section{Architecture of the System}
-The architecture of our IDS is designed to be robust and scalable. It consists of the following components...
 
+\section{System Architecture}
+Our IDS is designed to monitor network traffic and detect suspicious activities that may indicate data leaks. 
+The system architecture is shown in Figure \ref{fig:architecture}.
+The IDS consists of three main components: flow classifier, detection engine, and statistical analysis module.
 \begin{figure}[h!]
     \centering
     %\includegraphics[width=\textwidth]{path/to/your/architecture_diagram.png}
@@ -22,7 +24,59 @@ The architecture of our IDS is designed to be robust and scalable. It consists o
     \label{fig:architecture}
 \end{figure}
 
+\subsection{Flow Classifier}
+For each packet, the flow classifier extracts a 5-tuple key (source IP, destination IP, source port, destination port, protocol) and assigns it to a flow.
+The flow classifier then updates the flow's statistics, such as packet count and byte count, and forwards the flow to the detection engine.
+
+\subsection{Detection Engine}
+The detection engine analyzes the flows received from the flow classifier to identify potential data leak attacks.
+It uses a set of rules and traffic patterns to detect suspicious activities, such as tunneling, social engineering, and backdoors misuse.
+When a potential attack is detected, the detection engine generates an alert, prints it to the console, saves it to a log file.
+
+\subsection{Statistical Analysis Module}
+When the IDS is ordered to stop, by gracefully shutting down or an end of a simulation, the statistical analysis module saves the statistics of the flows to a file.
+And then, it activates the UI module to display the statistics in a user-friendly way.
+All the alerts, flow data, and statistics imgaes are saved to further analysis.
+UI example is shown in Appendix \ref{sec:ui}.
+
 \section{Detections Explanations}
 Our IDS is capable of detecting various types of intrusions. The detection mechanisms include...
+
+% add subsections for each detection mechanism
+
+\section{Docker Network Simulation}
+We used Docker to simulate a network environment for testing our IDS. The setup includes containers for an internal server, a database, user machines, an external server, and the IDS itself.
+
+\subsection{Network Setup}
+The network is defined using a Docker Compose file with the following components:
+\begin{itemize}
+    \item \textbf{Internal Server:} Nginx web server.
+    \item \textbf{Database:} MySQL database.
+    \item \textbf{User Machines:} Simulate normal and malicious activities.
+    \item \textbf{External Server:} Simulates external threats.
+    \item \textbf{IDS:} Monitors and detects suspicious activities.
+\end{itemize}
+
+\subsection{Traffic Generation}
+Scripts in user containers generate normal and malicious traffic, including web browsing, and data exfiltration.
+
+\subsection{IDS Monitoring and Detection}
+The IDS inspects packets, analyzes user behavior, and examines packet headers to detect data leaks. Alerts and logs are generated for suspicious activities.
+
+\subsection{Results and Analysis}
+The IDS's effectiveness is evaluated by reviewing alerts and analyzing traffic patterns to identify vulnerabilities.
+As we assumed, the IDS detected the data leak attacks and generated alerts successfully.
+
+\section{Future Extensions}
+In the future, the IDS can be extended to include more sophisticated detection mechanisms.....
+
+\section{Conclusions and Notes}
+The IDS is a powerful tool for detecting data leak attacks ...... 
+
+\appendix
+\section{User Interface Example}
+\label{sec:ui}
+% add a screenshot of the UI here
+
 
 \end{document}

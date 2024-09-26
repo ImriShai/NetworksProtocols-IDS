@@ -185,7 +185,7 @@ if __name__ == '__main__':
         create_dns_tunnel_traffic(10, "This sensitive data is being exfiltrated", "example.com")
     elif type == 2:
         print("ICMP Tunneling")
-        create_icmp_tunnel_traffic(10, "This sensitive data is being exfiltrated using ICMP")
+        create_icmp_tunnel_traffic(20, "This sensitive data is being exfiltrated using ICMP")
     elif type == 3:
         print("Ports Exploiting") # Create a PCAP file with unauthorized port access
         create_unauthorized_port_access_traffic(10, 9999)
@@ -212,7 +212,7 @@ if __name__ == '__main__':
     elif type == 11:
         print("All of the above")
         create_dns_tunnel_traffic(10, "This sensitive data is being exfiltrated", "example.com")
-        create_icmp_tunnel_traffic(10, "This sensitive data is being exfiltrated using ICMP")
+        create_icmp_tunnel_traffic(20, "This sensitive data is being exfiltrated using ICMP")
         create_unauthorized_port_access_traffic(10, 9999)
         create_after_buisness_hours_traffic(10)
         create_large_data_transfer_traffic(10)
