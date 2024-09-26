@@ -99,25 +99,19 @@ class DataDashboardGUI:
         plt.savefig('stats_img/Alerts_per_IP_Address.png')
         plt.show()
 
-    def plot_avrges(self):
-        avg_bytes = [stat['Byte Count'] for stat in self.stats_lines]
-        avg_packets = [stat['Packet Count'] for stat in self.stats_lines]
+    def plot_avrges(self): #plot the average usage of internal IPs
+        ip_avrges = Counter()
+        for ip in avg_usage.keys():
+            ip_avrges[ip] = avg_usage[ip]['bytes']
+        ips = list(ip_avrges.keys())
+        counts = list(ip_avrges.values())
         plt.figure(figsize=(10, 6))
-        sns.histplot(avg_bytes, bins=30)
-        plt.title('Flow Byte Count Distribution')
-        plt.xlabel('Byte Count')
-        plt.ylabel('Frequency')
+        sns.barplot(x=counts, y=ips)
+        plt.title('Average usage of internal IPs')
+        plt.xlabel('Count')
+        plt.ylabel('IP Address')
+        plt.savefig('stats_img/Average_usage_of_internal_IPs.png')
         plt.show()
-        plt.figure(figsize=(10, 6))
-        sns.histplot(avg_packets, bins=30)
-        plt.title('Flow Packet Count Distribution')
-        plt.xlabel('Packet Count')
-        plt.ylabel('Frequency')
-        plt.savefig('stats_img/Flow_Packet_Count_Distribution.png')
-        plt.show()
-       
-
-    
 
 
 
