@@ -291,6 +291,8 @@ def check_header(packet, port_src,port_dst, protocol_name):
             
     return False
 
+
+
 def add_alert(alert_msg, flow_id):
    global alerts, flow_statistics
    alerts.append(alert_msg)
@@ -307,8 +309,7 @@ def packet_callback(packet):
     global flow_statistics, AUTHORIZED_IPS, alerts
 
     if packet.haslayer(IP):
-        #if not packet.haslayer(TCP) and not packet.haslayer(UDP):
-            #print(f"Non-TCP/UDP packet detected from {ip_src} to {ip_dst}")
+        
             
         ip_src = packet[IP].src
         ip_dst = packet[IP].dst
@@ -474,8 +475,11 @@ def packet_callback(packet):
                 
                 
 
-def start_sniffing(interface):
-    sniff(iface=interface, prn=packet_callback, store=0, stop_filter=lambda x: stop_event.is_set())
+def start_sniffing(interface, check_interval = 10):
+     while not stop_event.is_set():
+        sniff(iface=interface, prn=packet_callback, store=0, timeout=check_interval)
+        if stop_event.is_set():
+            break
 
 def generate_statistics(flow_statistics):
     stats_lines = []

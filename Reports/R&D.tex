@@ -7,7 +7,7 @@
 \usepackage{color}
 
 \title{Research and Development on Data Leak Attacks}
-\author{Your Name}
+\author{Hagay Cohen, Imri Shai}
 \date{\today}
 
 \begin{document}
@@ -15,11 +15,14 @@
 \maketitle
 
 \begin{abstract}
-This document provides an overview of research and development activities related to data leak attacks. It covers the types of data leaks, methods of attack, and potential mitigation strategies.
+This document provides an overview of research and development activities related to data leak attacks. It covers the types of data leaks, methods of attack, and some simple examples of data leak attacks. It also discusses detection methods to protect against data leaks.
 \end{abstract}
 
 \section{Introduction}
-Data leak attacks are a significant threat to organizations, as they can result in the exposure of sensitive information and financial loss. Research and development activities in this area focus on understanding the types of data leaks, identifying methods of attack, and developing mitigation strategies to protect against these threats.
+Data leak attacks are a significant threat to organizations, as they can result in the exposure of sensitive information and financial loss. Our research and development activities focus on understanding the types of data leaks, methods of attack, and how to detect theme given a network traffic. 
+
+\section{Types of Data Leaks}
+Data leaks can occur through various channels, including network traffic, physical devices, and human error. In our research, we focus on network-based data leaks, which involve the unauthorized exfiltration of data through network traffic.
 
 \section{Methods of Attack}
 
@@ -48,23 +51,17 @@ Packet header analysis tools can examine network traffic to identify data leaks 
 \subsection{DNS Tunneling}
 DNS tunneling attacks involve using DNS queries and responses to exfiltrate data from a secure network. Attackers can encode data in DNS queries or responses and use a malicious DNS server to extract the information.
 
-\subsection{SQL Injection}
-SQL injection attacks involve injecting malicious SQL code into a web application to extract data from a database. Attackers can exploit vulnerabilities in input fields to execute SQL queries and retrieve sensitive information.
 
 \subsection{After Hours Data Exfiltration}
 After hours data exfiltration attacks involve exfiltrating data from a network when security teams are not actively monitoring traffic. Attackers may schedule data transfers during off-peak hours to avoid detection and increase the chances of success.
 
+\subsection{ports Misuses}
+Attackers may misuse open ports to exfiltrate data from a network. By exploiting vulnerabilities in software or hardware, attackers can gain unauthorized access to systems and exfiltrate sensitive information. one simple example is using port 80 to send data out of the network.
 
 
 \section{Conclusion}
-Data leak attacks pose a serious risk to organizations. By understanding the types of data leaks, methods of attack, and mitigation strategies, organizations can better protect themselves against these threats.
+Data leak attacks pose a significant threat to organizations, as they can result in the exposure of sensitive information and financial loss. Our research and development activities focus on understanding the types of data leaks, methods of attack, and how to detect them using network traffic analysis and other tools. By developing effective detection methods, organizations can protect against data leaks and mitigate the risks associated with these attacks.
 
-\begin{thebibliography}{9}
-\bibitem{example1}
-Author, \emph{Title of the Book}, Publisher, Year.
-
-\bibitem{example2}
-Author, \emph{Title of the Article}, Journal, Volume, Year.
-\end{thebibliography}
-
+\section{Next Steps}
+Our next steps will involve the development of a data leak detection tool that will analyze network traffic to identify potential data leaks. We will also continue to research new methods of data leak attacks and develop testing scenarios to evaluate the effectiveness of our detection tool.
 \end{document}

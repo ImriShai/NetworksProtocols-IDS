@@ -44,7 +44,7 @@ services:
     volumes:
       - ./volumes:/volumes  # User code directory
     
-    entrypoint: ["/bin/sh", "-c", "ip route del default || true && ip route add default via 172.21.0.9 && while true; do sleep 30; done"]  # Set the default gateway and keep the container running
+    entrypoint: ["/bin/sh", "-c", "apk update && apk add tcpreplay && ip route del default || true && ip route add default via 172.21.0.9 && while true; do sleep 30; done"]  # Set the default gateway and keep the container running
     cap_add:
       - NET_ADMIN # Required for network rerouting
     # restart: always
@@ -57,7 +57,7 @@ services:
     volumes:
       - ./volumes:/volumes  # User code directory
        
-    command: ["/bin/sh", "-c", "apk update && apk add curl && while true; do sleep 30; done"]  # Keep the container running
+    command: ["/bin/sh", "-c", "apk update && apk add curl tcpreplay && while true; do sleep 30; done"]  # Keep the container running
     entrypoint: ["/bin/sh", "-c", "ip route del default || true && ip route add default via 172.21.0.9 && while true; do sleep 30; done"]  # Set the default gateway and keep the container running
     cap_add:
       - NET_ADMIN # Required for network rerouting
@@ -70,7 +70,7 @@ services:
     volumes:
        - ./volumes:/volumes  # User code directory
        # run the user1 script
-    command: ["/bin/sh", "-c", "apk update && apk add bind-tools && while true; do sleep 30; done"]  # Keep the container running
+    command: ["/bin/sh", "-c", "apk update && apk add bind-tools tcpreplay && while true; do sleep 30; done"]  # Keep the container running
     entrypoint: ["/bin/sh", "-c", "ip route del default || true && ip route add default via 172.21.0.9 && while true; do sleep 30; done"]  # Set the default gateway and keep the container running
     cap_add:
       - NET_ADMIN # Required for network rerouting
@@ -83,7 +83,7 @@ services:
     volumes:
       - ./volumes:/volumes  # User code directory
        # run the user1 script
-    entrypoint: ["/bin/sh", "-c", "ip route del default || true && ip route add default via 172.21.0.9 && while true; do sleep 30; done"]  # Set the default gateway and keep the container running
+    entrypoint: ["/bin/sh", "-c", "apk update && apk add tcpreplay && ip route del default || true && ip route add default via 172.21.0.9 && while true; do sleep 30; done"]  # Set the default gateway and keep the container running
     cap_add:
       - NET_ADMIN # Required for network rerouting
   

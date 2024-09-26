@@ -7,8 +7,8 @@
 from scapy.all import *
 import base64
 import random
-import datetime
-import dpkt
+import os
+
 
 # Function to create a DNS query with "leaked information"
 def create_dns_tunnel_packet(secret_data, domain):
@@ -25,15 +25,16 @@ def create_dns_tunnel_packet(secret_data, domain):
 
 # Function to create multiple DNS packets with encoded data
 def create_dns_tunnel_traffic(num_packets, secret_message, domain):
-    print("PCAP file created with DNS tunneling traffic.")
     packets = []
     for i in range(num_packets):
         # Create a sample "data chunk" for each packet
         data_chunk = secret_message + str(i)
         packet = create_dns_tunnel_packet(data_chunk, domain)
-        packets.append(packet)
+        ethernet_packet = Ether()/packet
+        packets.append(ethernet_packet)
     # Save the packets to a PCAP file
-    wrpcap("dns_tunnel_exfiltration.pcap", packets)
+    wrpcap("../user_pcaps/dns_tunnel_exfiltration.pcap", packets)
+    print("PCAP file created with DNS tunneling traffic.")
     
 def create_icmp_tunnel_packet(secret_data):
     # Encode the information in Base32 to simulate tunneling communication
@@ -44,15 +45,16 @@ def create_icmp_tunnel_packet(secret_data):
     return icmp_packet
 
 def create_icmp_tunnel_traffic(num_packets, secret_message):
-    print("PCAP file created with ICMP tunneling traffic.")
     packets = []
     for i in range(num_packets):
         # Create a sample "data chunk" for each packet
         data_chunk = secret_message + str(i)
         packet = create_icmp_tunnel_packet(data_chunk)
-        packets.append(packet)
+        ethernet_packet = Ether()/packet
+        packets.append(ethernet_packet)
     # Save the packets to a PCAP file
-    wrpcap("icmp_tunnel_exfiltration.pcap", packets)
+    wrpcap("../user_pcaps/icmp_tunnel_exfiltration.pcap", packets)
+    print("PCAP file created with ICMP tunneling traffic.")
                      
 
 def create_unauthorized_port_access_packet(port):
@@ -60,13 +62,14 @@ def create_unauthorized_port_access_packet(port):
     packet = IP(dst=f"{random.randint(0,255)}.{random.randint(0,255)}.{random.randint(0,255)}.{random.randint(0,255)}")/TCP(dport=port) # Destination port is unauthorized, ip address is random
     return packet
 def create_unauthorized_port_access_traffic(num_packets, port):
-    print("PCAP file created with unauthorized port access.")
     packets = []
     for i in range(num_packets):
         packet = create_unauthorized_port_access_packet(port)
-        packets.append(packet)
+        ethernet_packet = Ether()/packet
+        packets.append(ethernet_packet)
     # Save the packets to a PCAP file
-    wrpcap("unauthorized_port_access.pcap", packets)
+    wrpcap("../user_pcaps/unauthorized_port_access.pcap", packets)
+    print("PCAP file created with unauthorized port access.")
     
 def create_after_buisness_hours_packet():
     # Create a packet that is sent after buisness hours
@@ -74,13 +77,14 @@ def create_after_buisness_hours_packet():
     packet.time = 1610000000 + random.randint(0, 86400)  # Set the packet time to be after buisness hours
     return packet
 def create_after_buisness_hours_traffic(num_packets):
-    print("PCAP file created with traffic sent after buisness hours.")
     packets = []
     for i in range(num_packets):
         packet = create_after_buisness_hours_packet()
-        packets.append(packet)
+        ethernet_packet = Ether()/packet
+        packets.append(ethernet_packet)
     # Save the packets to a PCAP file
-    wrpcap("after_buisness_hours.pcap", packets)
+    wrpcap("../user_pcaps/after_buisness_hours.pcap", packets)
+    print("PCAP file created with traffic sent after buisness hours.")
    
     
 def create_large_data_transfer_packet():
@@ -90,13 +94,14 @@ def create_large_data_transfer_packet():
     return packet
 
 def create_large_data_transfer_traffic(num_packets):
-    print("PCAP file created with large data transfer.")
     packets = []
     for i in range(num_packets):
         packet = create_large_data_transfer_packet()
-        packets.append(packet)
+        ethernet_packet = Ether()/packet
+        packets.append(ethernet_packet)
     # Save the packets to a PCAP file
-    wrpcap("large_data_transfer.pcap", packets)
+    wrpcap("../user_pcaps/large_data_transfer.pcap", packets)
+    print("PCAP file created with large data transfer.")
     
 
 def create_suspicious_traffic_packet():
@@ -105,13 +110,14 @@ def create_suspicious_traffic_packet():
     return packet
 
 def create_suspicious_traffic_traffic(num_packets):
-    print("PCAP file created with suspicious traffic.")
     packets = []
     for i in range(num_packets):
         packet = create_suspicious_traffic_packet()
-        packets.append(packet)
+        ethernet_packet = Ether()/packet
+        packets.append(ethernet_packet)
     # Save the packets to a PCAP file
-    wrpcap("suspicious_traffic.pcap", packets)
+    wrpcap("../user_pcaps/suspicious_traffic.pcap", packets)
+    print("PCAP file created with suspicious traffic.")
 
 
 def create_unauthorized_file_transfer_packet():
@@ -120,13 +126,14 @@ def create_unauthorized_file_transfer_packet():
     return packet
 
 def create_unauthorized_file_transfer_traffic(num_packets):
-    print("PCAP file created with unauthorized file transfer.")
     packets = []
     for i in range(num_packets):
         packet = create_unauthorized_file_transfer_packet()
-        packets.append(packet)
+        ethernet_packet = Ether()/packet
+        packets.append(ethernet_packet)
     # Save the packets to a PCAP file
-    wrpcap("unauthorized_file_transfer.pcap", packets)
+    wrpcap("../user_pcaps/unauthorized_file_transfer.pcap", packets)
+    print("PCAP file created with unauthorized file transfer.")
     
 def create_unusual_traffic_packet():
     # Create a packet with unusual traffic
@@ -136,13 +143,14 @@ def create_unusual_traffic_packet():
     return packet
 
 def create_unusual_traffic_traffic(num_packets):
-    print("PCAP file created with unusual traffic.")
     packets = []
     for i in range(num_packets):
         packet = create_unusual_traffic_packet()
-        packets.append(packet)
+        ethernet_packet = Ether()/packet
+        packets.append(ethernet_packet)
     # Save the packets to a PCAP file
-    wrpcap("unusual_traffic.pcap", packets)
+    wrpcap("../user_pcaps/unusual_traffic.pcap", packets)
+    print("PCAP file created with unusual traffic.")
     
 def create_unusual_user_activity_packet():
     # Create a packet with unusual user activity
@@ -150,13 +158,14 @@ def create_unusual_user_activity_packet():
     packet.add_payload(b"UNUSUAL_USER_ACTIVITY" * random.randint(1, 100))  # Add a payload with repeated unusual user activity pattern
     return packet
 def create_unusual_user_activity_traffic(num_packets):
-    print("PCAP file created with unusual user activity.")
     packets = []
     for i in range(num_packets):
         packet = create_unusual_user_activity_packet()
-        packets.append(packet)
+        ethernet_packet = Ether()/packet
+        packets.append(ethernet_packet)
     # Save the packets to a PCAP file
-    wrpcap("unusual_user_activity.pcap", packets)
+    wrpcap("../user_pcaps/unusual_user_activity.pcap", packets)
+    print("PCAP file created with unusual user activity.")
 
 
 
@@ -165,6 +174,11 @@ if __name__ == '__main__':
     
     type = input("Enter the type of alerts you want to test: \n 1. DNS Tunneling \n 2. ICMP tunneling \n 3. Ports Exploiting(e.g using unautherized ports) \n 4. After buisness hours \n 5. Large data transfer \n 6. Suspicious Traffic \n 7. Unauthorized File Transfer \n 8. Unusual Traffic \n 9. Unusual User Activity \n 11. All of the above \n") 
     type = int(type)
+    if type not in [1,2,3,4,5,6,7,8,9,11]:
+        print("Invalid input")
+        exit()
+    else:
+        os.makedirs("../user_pcaps", exist_ok=True)
     if type == 1:
         print("DNS Tunneling")
         # Create a PCAP file with DNS tunneling traffic
@@ -198,6 +212,7 @@ if __name__ == '__main__':
     elif type == 11:
         print("All of the above")
         create_dns_tunnel_traffic(10, "This sensitive data is being exfiltrated", "example.com")
+        create_icmp_tunnel_traffic(10, "This sensitive data is being exfiltrated using ICMP")
         create_unauthorized_port_access_traffic(10, 9999)
         create_after_buisness_hours_traffic(10)
         create_large_data_transfer_traffic(10)
@@ -205,10 +220,7 @@ if __name__ == '__main__':
         create_unauthorized_file_transfer_traffic(10)
         create_unusual_traffic_traffic(100)
         create_unusual_user_activity_traffic(1000)
-    else: 
-        print("Invalid input")
-        exit()
-
+    print("All PCAP files created successfully.")
                  
     
     
