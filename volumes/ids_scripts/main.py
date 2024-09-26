@@ -505,6 +505,7 @@ def save_statistics_to_file(alertsFile,csvStatsFile, stats_lines, alert_lines):
             file.write(line + '\n')
 
 def save_and_exit(flow_statistics, alerts, stats_per_flow, alerts_file):
+    os.makedirs('stats', exist_ok=True)
     print("Saving statistics and alerts...")
     stats_lines = generate_statistics(flow_statistics)
     save_statistics_to_file(alerts_file,stats_per_flow, stats_lines, alerts)
