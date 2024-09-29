@@ -47,8 +47,15 @@ INPUT C:\Users\hagay\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmsy8.tfm
 INPUT C:\Users\hagay\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmsy6.tfm
 INPUT C:\Users\hagay\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmr12.tfm
 INPUT C:\Users\hagay\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbx12.tfm
-INPUT C:\Users\hagay\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbx12.tfm
+INPUT .\Screenshots\fig_1.png
+INPUT .\Screenshots\fig_1.png
+INPUT .\Screenshots\fig_1.png
+INPUT .\Screenshots\fig_1.png
 OUTPUT IDS.pdf
+INPUT .\Screenshots\fig_1.png
+INPUT .\Screenshots\fig_1.png
+INPUT .\Screenshots\fig_1.png
+INPUT C:\Users\hagay\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbx12.tfm
 INPUT C:\Users\hagay\AppData\Local\MiKTeX\fonts\map\pdftex\pdftex.map
 INPUT C:\Users\hagay\AppData\Local\Programs\MiKTeX\fonts\tfm\jknappen\ec\tcrm1000.tfm
 INPUT C:\Users\hagay\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbx10.tfm

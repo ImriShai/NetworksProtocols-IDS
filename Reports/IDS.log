@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.9.24)  26 SEP 2024 12:04
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.9.24)  29 SEP 2024 13:55
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -87,25 +87,30 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <8> on input line 10.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <6> on input line 10.
+<Screenshots/fig_1.png, id=1, 932.73468pt x 408.02437pt>
+File: Screenshots/fig_1.png Graphic file (type png)
+<use Screenshots/fig_1.png>
+Package pdftex.def Info: Screenshots/fig_1.png  used on input line 22.
+(pdftex.def)             Requested size: 345.0pt x 150.91684pt.
  [1
 
-{C:/Users/hagay/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}] [2]
-<Screenshots/Flows_per_Protocol.png, id=14, 722.7pt x 433.62pt>
+{C:/Users/hagay/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map} <./Screenshots/fig_1.png>] [2]
+<Screenshots/Flows_per_Protocol.png, id=17, 722.7pt x 433.62pt>
 File: Screenshots/Flows_per_Protocol.png Graphic file (type png)
 <use Screenshots/Flows_per_Protocol.png>
 Package pdftex.def Info: Screenshots/Flows_per_Protocol.png  used on input line 79.
 (pdftex.def)             Requested size: 345.0pt x 206.9972pt.
-<Screenshots/Top_10_IPs_by_Flow_Count.png, id=16, 722.7pt x 433.62pt>
+<Screenshots/Top_10_IPs_by_Flow_Count.png, id=18, 722.7pt x 433.62pt>
 File: Screenshots/Top_10_IPs_by_Flow_Count.png Graphic file (type png)
 <use Screenshots/Top_10_IPs_by_Flow_Count.png>
 Package pdftex.def Info: Screenshots/Top_10_IPs_by_Flow_Count.png  used on input line 80.
 (pdftex.def)             Requested size: 345.0pt x 206.9972pt.
-<Screenshots/Alerts_per_Protocol.png, id=17, 722.7pt x 433.62pt>
+<Screenshots/Alerts_per_Protocol.png, id=19, 722.7pt x 433.62pt>
 File: Screenshots/Alerts_per_Protocol.png Graphic file (type png)
 <use Screenshots/Alerts_per_Protocol.png>
 Package pdftex.def Info: Screenshots/Alerts_per_Protocol.png  used on input line 81.
 (pdftex.def)             Requested size: 345.0pt x 206.9972pt.
-<Screenshots/Alerts_per_IP_Address.png, id=18, 722.7pt x 433.62pt>
+<Screenshots/Alerts_per_IP_Address.png, id=20, 722.7pt x 433.62pt>
 File: Screenshots/Alerts_per_IP_Address.png Graphic file (type png)
 <use Screenshots/Alerts_per_IP_Address.png>
 Package pdftex.def Info: Screenshots/Alerts_per_IP_Address.png  used on input line 82.
@@ -117,17 +122,17 @@ L3 programming layer <2024-01-04>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 1334 strings out of 474486
- 23159 string characters out of 5743755
- 1930542 words of memory out of 5000000
- 23654 multiletter control sequences out of 15000+600000
+ 1341 strings out of 474486
+ 23354 string characters out of 5743755
+ 1931542 words of memory out of 5000000
+ 23661 multiletter control sequences out of 15000+600000
  562659 words of font info for 51 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 57i,6n,65p,461b,199s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 57i,7n,65p,461b,232s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\hagay\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1000.pk><C:/Users/hagay/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/hagay/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/hagay/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/hagay/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/hagay/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb>
-Output written on IDS.pdf (5 pages, 160048 bytes).
+Output written on IDS.pdf (5 pages, 205045 bytes).
 PDF statistics:
- 57 PDF objects out of 1000 (max. 8388607)
+ 59 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 21 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 26 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1727341498.40089 "c:/Users/hagay/.vscode/NetworksProtocols-IDS/Reports/IDS.tex" "IDS.pdf" "IDS" 1727341499.37784 0
+["pdflatex"] 1727607331.1097 "c:/Users/hagay/.vscode/NetworksProtocols-IDS/Reports/IDS.tex" "IDS.pdf" "IDS" 1727607332.14545 0
   "C:/Users/hagay/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1727173722 80909 eab91d9745dd2edfd62a31d53cd5fe15 ""
   "C:/Users/hagay/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/tcrm1000.pk" 1727340256 11548 ab19c10659ca87e209abe7c704263254 ""
   "C:/Users/hagay/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1727173665 24225046 002efb060574a8af8b5f6c59b1b6f9aa ""
@@ -33,13 +33,14 @@
   "C:/Users/hagay/AppData/Local/Programs/MiKTeX/tex/latex/graphics/keyval.sty" 1665067579 2671 7e67d78d9b88c845599a85b2d41f2e39 ""
   "C:/Users/hagay/AppData/Local/Programs/MiKTeX/tex/latex/graphics/trig.sty" 1665067579 4023 293ea1c16429fc0c4cf605f4da1791a9 ""
   "C:/Users/hagay/AppData/Local/Programs/MiKTeX/tex/latex/l3backend/l3backend-pdftex.def" 1704404541 30006 57b07afb710ee2f649c65cfbafda39c1 ""
-  "IDS.aux" 1727341499 1784 56b05647b8b2d23eacfd2caf8cfe1f89 "pdflatex"
-  "IDS.tex" 1727341498 4374 15812778d79e8b70c6e82038d8a7c09d ""
+  "IDS.aux" 1727607331 1784 27aa7952974b6713f9a533eb06534658 "pdflatex"
+  "IDS.tex" 1727607329 4357 fdf5232a7fdf957c17edd3763b963543 ""
   "Screenshots/Alerts_per_IP_Address.png" 1727341054 24867 57f7a1d5837319132b5cf9b9349760e8 ""
   "Screenshots/Alerts_per_Protocol.png" 1727341051 24599 847a0bb8f4062e26a4c7ff1f1d7747f8 ""
   "Screenshots/Flows_per_Protocol.png" 1727341039 24976 80083fdd2736550b9e9dc132b529b698 ""
   "Screenshots/Top_10_IPs_by_Flow_Count.png" 1727341044 24718 30724a858090b6406107b9845846d5b0 ""
-  "c:/Users/hagay/.vscode/NetworksProtocols-IDS/Reports/IDS.tex" 1727341498 4374 15812778d79e8b70c6e82038d8a7c09d ""
+  "Screenshots/fig_1.png" 1727607144 69450 117c577f8f92fd2882b36af0f40f427a ""
+  "c:/Users/hagay/.vscode/NetworksProtocols-IDS/Reports/IDS.tex" 1727607329 4357 fdf5232a7fdf957c17edd3763b963543 ""
   (generated)
   "IDS.aux"
   "IDS.log"
