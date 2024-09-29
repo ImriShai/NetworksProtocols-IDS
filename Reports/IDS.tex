@@ -40,7 +40,14 @@ All the alerts, flow data, and statistics imgaes are saved to further analysis.
 UI example is shown in Appendix \ref{sec:ui}.
 
 \section{Detections Explanations}
-Our IDS is capable of detecting various types of intrusions. The detection mechanisms include...
+Our IDS is capable of detecting various types of intrusions. The detection mechanisms include:
+\begin{itemize}
+    \item \textbf{Data Exfiltration:} Detects data leak attacks by analyzing packet headers and inspecting packet contents, while considering protocol-specific characteristics.
+    \item \textbf{Backdoors Misuse:} Detects backdoors misuse by monitoring network traffic and identifying usege of known backdoor ports or usege of internal protocols.
+    \item \textbf{Tunneling:} Identifies tunneling attacks by analyzing packet headers and detecting anomalies in network traffic.
+    \item \textbf{Suspicious User Behavior:} Analyzes user behavior and identifies patterns that deviate from normal activities, such as excessive data transfer or after-hours access.
+    \item \textbf{Unauthorized IP Address:} Detects unauthorized IP addresses by monitoring network traffic and identifying connections from unknown or blacklisted IP addresses.
+\end{itemize}
 
 % add subsections for each detection mechanism
 
@@ -65,15 +72,38 @@ The IDS inspects packets, analyzes user behavior, and examines packet headers to
 
 \subsection{Results and Analysis}
 The IDS's effectiveness is evaluated by reviewing alerts and analyzing traffic patterns to identify vulnerabilities.
-As we assumed, the IDS detected the data leak attacks and generated alerts successfully.
+\section{Test Cases}
+In the "volumes" directory under the "ids\_scripts" folder, there is a file named \texttt{Test.py} that contains the test cases. The test cases are designed to validate the functionality of the IDS by simulating various attack scenarios and verifying that the IDS correctly identifies and generates alerts for these attacks. The test cases include:
+
+\begin{itemize}
+    \item DNS Tunneling
+    \item ICMP Tunneling
+    \item Unauthorized Port Access
+    \item After Business Hours Traffic
+    \item Large Data Transfer
+    \item Suspicious Traffic
+    \item Unauthorized File Transfer
+    \item Unusual Traffic
+    \item Unusual User Activity
+\end{itemize}
+
+The test cases are executed by running the \texttt{Test.py} script, which generates traffic in PCAP format. The PCAP files can be analyzed using Wireshark and used as input to the IDS for detection.
 
 \section{Future Extensions}
-In the future, the IDS can be extended to include more sophisticated detection mechanisms.....
-
+In the future, the IDS can be extended to include more sophisticated detection mechanisms, such as:
+\begin{itemize}
+    \item \textbf{Machine Learning:} Implement machine learning algorithms to improve detection accuracy and reduce false positives.
+    \item \textbf{Deep Packet Inspection:} Analyze packet contents to detect data leaks and identify malicious payloads.
+    \item \textbf{Behavioral Analysis:} Monitor user behavior and identify patterns that deviate from normal activities.
+    \item \textbf{Sandboxing:} Isolate suspicious files or applications in a sandbox environment to prevent data leaks.
+\end{itemize}
 \section{Conclusions and Notes}
-The IDS is a powerful tool for detecting data leak attacks ...... 
+The IDS is a powerful tool for detecting data leak attacks, backdoors misuse, tunneling, and other security threats. After conducting research on data leak attacks and implementing the IDS, we have gained valuable insights into intrusion detection mechanisms and network security. The IDS can be further enhanced and diversified to address emerging threats and vulnerabilities in network environments.
+
+\textbf{NOTE:} The IDS is a proof-of-concept implementation. In a real-world scenario, the IDS would be deployed in a production environment with additional security measures and monitoring capabilities. Moreover, our IDS is designed to inspect unencrypted network traffic. Encrypted traffic, which is a common practice in modern networks, would require additional mechanisms, and some of the detection mechanisms may not be applicable.
 
 \appendix
+
 \section{User Interface Example}
 \label{sec:ui}
 \includegraphics[width=\textwidth]{Screenshots/Flows_per_Protocol.png}
